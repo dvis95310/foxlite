@@ -1,21 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="page-container" id="app">
+    <router-view/>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+
+
+/* eslint-disable */
+  export default {
+    data () {
+      return {
+        users: [],
+        loading: false,
+      }
+    },
+    mounted () {
+      this.$axios
+      .get('http://54.37.226.188:3000/years/2018',{
+        headers: {
+            'Access-Control-Allow-Origin': 'http://http://54.37.226.188:8080/',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': '*'
+        },
+        credentials: 'same-origin'
+
+  
+  })
+      .then(response => console.log(response.data))
+                }
+      
   }
-}
-</script>
 
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -23,6 +41,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
